@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <event-block sid="639282347704021">
+            <conditions>
+                <condition id="2" name="Key is down" sid="849296171032284" type="Keyboard">
+                    <param id="0" name="Key">38</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="247972484814879" type="Player">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="649271841169769">
+            <conditions>
+                <condition id="2" name="Key is down" sid="452704119589124" type="Keyboard">
+                    <param id="0" name="Key">40</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="140855655792297" type="Player">
+                    <param id="0" name="Control">3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="299718765749767">
+            <conditions>
+                <condition id="2" name="Key is down" sid="533157585250384" type="Keyboard">
+                    <param id="0" name="Key">37</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="799996503465879" type="Player">
+                    <param id="0" name="Control">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="680610341523106">
+            <conditions>
+                <condition id="2" name="Key is down" sid="737186838804556" type="Keyboard">
+                    <param id="0" name="Key">39</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="450474561466366" type="Player">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="367385064557150">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="931418375685563" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="263624667397873" type="Light">
+                    <param id="0" name="X">lerp(Self.X,Player.X,dt*10)</param>
+                    <param id="1" name="Y">lerp(Self.Y,Player.y,dt*10)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="868150326003738">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="335728349272052" type="Player">
+                    <param id="0" name="Object">Exit</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="918448870929222" type="Player">
+                    <param id="0" name="Instance variable">hasKey</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="305791091126260" type="Function">
+                    <param id="0" name="Name">&quot;ExitLevel&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="359567635987086">
+            <conditions>
+                <condition id="0" name="On function" sid="739425626627140" type="Function">
+                    <param id="0" name="Name">&quot;ExitLevel&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="288388477212537">
+                    <conditions />
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="969535735556069">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="766381655499619" type="Keyboard">
+                    <param id="0" name="Key">32</param>
+                </condition>
+                <condition id="1" name="Is overlapping another object" sid="343998351997828" type="Player">
+                    <param id="0" name="Object">Key</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="775035650404908" type="Player">
+                    <param id="0" name="Instance variable">hasKey</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="360301800704778">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="632178588290877" type="Player">
+                    <param id="0" name="Instance variable">hasKey</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="231741530338733" type="Key">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="131526503570164">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="390186364061055" type="Player">
+                    <param id="0" name="Object">SoundDetectionArea</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="735941011834860" type="SoundDetectionArea">
+                    <param id="0" name="Instance variable">isOn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="474188142506456" type="SoundDetectionArea">
+                    <param id="0" name="Instance variable">isOn</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
