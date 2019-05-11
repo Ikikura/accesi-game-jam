@@ -13,7 +13,9 @@
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
@@ -105,6 +107,9 @@
         </object-type>
         <object-type name="Key" sid="895564857651860">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="keyName" sid="416993540288240" type="string" />
+            </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="549845010077417" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -114,7 +119,7 @@
         <object-type name="SoundDetectionArea" sid="638088106843931">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="soundName" sid="168749664473116" type="string" />
+                <instance-variable name="objectName" sid="168749664473116" type="string" />
                 <instance-variable name="isOn" sid="601959009216726" type="boolean" />
             </instance-variables>
             <animation-folder>
@@ -126,10 +131,17 @@
         <object-type name="Audio" sid="799002641410328">
             <plugin id="Audio" />
         </object-type>
+        <object-type name="Mouse" sid="842631687175692">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="Text" sid="335327549505640">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
-        <layout>Layout 1.xml</layout>
+        <layout>LevelBase.xml</layout>
+        <layout>Objects.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Event sheet 1.xml</event-sheet>
@@ -151,8 +163,14 @@
                 <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
+        <global-instance type="Mouse" uid="12" />
     </global-instances>
-    <sounds-folder />
+    <sounds-folder>
+        <file name="keyA.m4a" />
+        <file name="keyA.ogg" />
+        <file name="keyB.m4a" />
+        <file name="keyB.ogg" />
+    </sounds-folder>
     <music-folder />
     <files-folder>
         <file-folder name="Icons">
