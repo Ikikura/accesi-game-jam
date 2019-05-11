@@ -3,7 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <variable constant="0" name="lastSoundIID" sid="661227042611889" static="0" type="text"></variable>
+        <variable constant="0" name="keysInLevel" sid="152304814548680" static="0" type="number">1</variable>
+        <variable constant="0" name="LevelNumber" sid="625155419745294" static="0" type="number">1</variable>
         <event-block sid="639282347704021">
             <conditions>
                 <condition id="2" name="Key is down" sid="849296171032284" type="Keyboard">
@@ -68,8 +69,10 @@
                 <condition id="1" name="Is overlapping another object" sid="335728349272052" type="Player">
                     <param id="0" name="Object">Exit</param>
                 </condition>
-                <condition id="-8" name="Is boolean instance variable set" sid="918448870929222" type="Player">
-                    <param id="0" name="Instance variable">hasKey</param>
+                <condition id="-7" name="Compare instance variable" sid="986893138730467" type="Player">
+                    <param id="0" name="Instance variable">keys</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">keysInLevel</param>
                 </condition>
             </conditions>
             <actions>
@@ -93,7 +96,16 @@
                             <param id="0" name="Instance variable">hasKey</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="307867025767826" type="System">
+                            <param id="0" name="Variable">LevelNumber</param>
+                            <param id="1" name="Value">LevelNumber+1</param>
+                        </action>
+                        <action id="-25" name="Go to layout (by name)" sid="113656552026267" type="System">
+                            <param id="0" name="Layout">&quot;Level&quot;&amp;LevelNumber</param>
+                        </action>
+                        <action id="33" name="Stop all" sid="255441153251779" type="Audio" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>
@@ -111,56 +123,80 @@
                     <param id="0" name="Instance variable">hasKey</param>
                     <param id="1" name="Value">1</param>
                 </action>
-            </actions>
-        </event-block>
-        <event-block sid="360301800704778">
-            <conditions>
-                <condition id="-8" name="Is boolean instance variable set" sid="632178588290877" type="Player">
-                    <param id="0" name="Instance variable">hasKey</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Set position" sid="231741530338733" type="Key">
-                    <param id="0" name="X">Player.X</param>
-                    <param id="1" name="Y">Player.Y</param>
+                <action id="1" name="Set looping" sid="448186211318401" type="Audio">
+                    <param id="0" name="Tag">Key.keyName</param>
+                    <param id="1" name="State">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="196764581481833" type="Key" />
+                <action id="-10" name="Set value" sid="760780316066218" type="Player">
+                    <param id="0" name="Instance variable">keys</param>
+                    <param id="1" name="Value">Self.keys+1</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="709652942401319">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="158386202658898" type="Player">
+                            <param id="0" name="Instance variable">keys</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">keysInLevel</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="29" name="Play at position (by name)" sid="891770000139697" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;exit&quot;</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="4" name="X">Exit.X</param>
+                            <param id="5" name="Y">Exit.Y</param>
+                            <param id="6" name="Angle">0</param>
+                            <param id="7" name="Inner angle">0</param>
+                            <param id="8" name="Outer angle">0</param>
+                            <param id="9" name="Outer gain">0</param>
+                            <param id="10" name="Tag (optional)">&quot;Exit&quot;</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="642073896379523" type="System">
+                            <param id="0" name="Object to create">ObjectArea</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">Exit.X</param>
+                            <param id="3" name="Y">Exit.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="131526503570164">
             <conditions>
                 <condition id="1" name="Is overlapping another object" sid="390186364061055" type="Player">
-                    <param id="0" name="Object">SoundDetectionArea</param>
+                    <param id="0" name="Object">ObjectArea</param>
                 </condition>
             </conditions>
             <actions />
             <sub-events>
                 <event-block sid="418865042010031">
                     <conditions>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="735941011834860" type="SoundDetectionArea">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="735941011834860" type="ObjectArea">
                             <param id="0" name="Instance variable">isOn</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" sid="474188142506456" type="SoundDetectionArea">
+                        <action id="-13" name="Set boolean" sid="474188142506456" type="ObjectArea">
                             <param id="0" name="Instance variable">isOn</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="29" name="Play at position (by name)" sid="198326776839958" type="Audio">
                             <param id="0" name="Folder">0</param>
-                            <param id="1" name="Audio file name">SoundDetectionArea.objectName</param>
+                            <param id="1" name="Audio file name">ObjectArea.objectName</param>
                             <param id="2" name="Loop">1</param>
                             <param id="3" name="Volume">0</param>
-                            <param id="4" name="X">SoundDetectionArea.X</param>
-                            <param id="5" name="Y">SoundDetectionArea.Y</param>
-                            <param id="6" name="Angle">360</param>
+                            <param id="4" name="X">ObjectArea.X</param>
+                            <param id="5" name="Y">ObjectArea.Y</param>
+                            <param id="6" name="Angle">0</param>
                             <param id="7" name="Inner angle">0</param>
-                            <param id="8" name="Outer angle">360</param>
+                            <param id="8" name="Outer angle">0</param>
                             <param id="9" name="Outer gain">0</param>
-                            <param id="10" name="Tag (optional)">SoundDetectionArea.objectName</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="149922445064374" type="System">
-                            <param id="0" name="Variable">lastSoundIID</param>
-                            <param id="1" name="Value">SoundDetectionArea.objectName</param>
+                            <param id="10" name="Tag (optional)">ObjectArea.objectName</param>
                         </action>
                     </actions>
                 </event-block>
@@ -174,18 +210,25 @@
                 <action id="26" name="Set listener object" sid="768135501105386" type="Audio">
                     <param id="0" name="Object">Player</param>
                 </action>
+                <action id="11" name="Load" sid="153037890452043" type="Array">
+                    <param id="0" name="JSON">&quot;{c2array:true,size:[10,1,1],data:[[[1]],[[1]],[[1]],[[1]],[[1]],[[1]],[[1]],[[1]],[[2]],[[2]]]}&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="729641893260106" type="System">
+                    <param id="0" name="Variable">keysInLevel</param>
+                    <param id="1" name="Value">Array.AT(LevelNumber)</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="166171423013580">
             <conditions>
                 <condition id="-11" name="For Each" sid="914547225198457" type="System">
-                    <param id="0" name="Object">SoundDetectionArea</param>
+                    <param id="0" name="Object">ObjectArea</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="3" name="Set volume" sid="363216008561314" type="Audio">
-                    <param id="0" name="Tag">SoundDetectionArea.objectName</param>
-                    <param id="1" name="dB">-1*(distance(Player.X,Player.Y,SoundDetectionArea.X,SoundDetectionArea.Y)/50)</param>
+                    <param id="0" name="Tag">ObjectArea.objectName</param>
+                    <param id="1" name="dB">-1*(distance(Player.X,Player.Y,ObjectArea.X,ObjectArea.Y)/50)</param>
                 </action>
             </actions>
         </event-block>
@@ -195,15 +238,86 @@
             </conditions>
             <actions>
                 <action id="-3" name="Create object" sid="480292679500805" type="System">
-                    <param id="0" name="Object to create">SoundDetectionArea</param>
+                    <param id="0" name="Object to create">ObjectArea</param>
                     <param id="1" name="Layer">&quot;player&quot;</param>
                     <param id="2" name="X">Key.x</param>
                     <param id="3" name="Y">Key.Y</param>
                 </action>
-                <action id="-10" name="Set value" sid="350676727969228" type="SoundDetectionArea">
+                <action id="-10" name="Set value" sid="350676727969228" type="ObjectArea">
                     <param id="0" name="Instance variable">objectName</param>
                     <param id="1" name="Value">Key.keyName</param>
                 </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="230903603948574" type="ObjectArea">
+                    <param id="0" name="Pin to">Key</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-25" name="Move to bottom" sid="110643958107703" type="ObjectArea" />
+            </actions>
+        </event-block>
+        <event-block disabled="1" sid="482344078060600">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="697515284178627" type="ObjectArea">
+                    <param id="0" name="Instance variable">pulsing</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" sid="532890527141062" type="ObjectArea">
+                    <param id="0" name="Opacity">clamp(sin(time)*200,0,100)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="525881616987298">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="560764079546640" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="861210820954521" type="SoundCollision">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="709793102507553">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="900479788449785" type="Keyboard" />
+                <condition id="5" inverted="1" name="Is tag playing" sid="884735986711506" type="Audio">
+                    <param id="0" name="Tag">&quot;wall&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="208161649227060">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="672343681887460" type="SoundCollision">
+                            <param id="0" name="Object">Table</param>
+                        </condition>
+                        <condition id="1" name="Is overlapping another object" sid="304506136052112" type="SoundCollision">
+                            <param id="0" name="Object">Wall</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="640339561111137" type="Audio">
+                            <param id="0" name="Audio file">wallSound</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;wall&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="409757382077429">
+            <conditions>
+                <condition id="-18" name="On created" sid="504541579396976" type="Player" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="295291002570826" type="System">
+                    <param id="0" name="Object to create">SoundCollision</param>
+                    <param id="1" name="Layer">&quot;player&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-25" name="Move to bottom" sid="952280727616928" type="SoundCollision" />
             </actions>
         </event-block>
     </events>
